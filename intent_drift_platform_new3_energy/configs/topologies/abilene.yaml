@@ -1,0 +1,130 @@
+# configs/topologies/abilene.yaml
+name: Abilene
+description: "Abilene backbone network topology with delay and bandwidth configurations for HierDrift simulation"
+
+nodes:
+  - id: s1
+    name: "ATLAM5"
+    type: switch
+  - id: s2
+    name: "ATLAng"
+    type: switch
+  - id: s3
+    name: "CHINng"
+    type: switch
+  - id: s4
+    name: "DNVRng"
+    type: switch
+  - id: s5
+    name: "HSTNng"
+    type: switch
+  - id: s6
+    name: "IPLSng"
+    type: switch
+  - id: s7
+    name: "KSCYng"
+    type: switch
+  - id: s8
+    name: "LOSAng"
+    type: switch
+  - id: s9
+    name: "NYCMng"
+    type: switch
+  - id: s10
+    name: "SNVAng"
+    type: switch
+  - id: s11
+    name: "STTLng"
+    type: switch
+  - id: s12
+    name: "WASHng"
+    type: switch
+
+links:
+  # Link Configuration (Bandwidth unit: Mbps, Latency unit: ms; latency is estimated based on approximate geographical distance)
+  - src: s1
+    dst: s2
+    bandwidth: 100
+    delay: 2
+  - src: s2
+    dst: s3
+    bandwidth: 100
+    delay: 10
+  - src: s3
+    dst: s6
+    bandwidth: 100
+    delay: 5
+  - src: s3
+    dst: s9
+    bandwidth: 100
+    delay: 12
+  - src: s9
+    dst: s12
+    bandwidth: 100
+    delay: 4
+  - src: s12
+    dst: s2
+    bandwidth: 100
+    delay: 8
+  - src: s6
+    dst: s7
+    bandwidth: 100
+    delay: 6
+  - src: s7
+    dst: s4
+    bandwidth: 100
+    delay: 10
+  - src: s4
+    dst: s11
+    bandwidth: 100
+    delay: 15
+  - src: s11
+    dst: s10
+    bandwidth: 100
+    delay: 12
+  - src: s10
+    dst: s8
+    bandwidth: 100
+    delay: 5
+  - src: s8
+    dst: s5
+    bandwidth: 100
+    delay: 18
+  - src: s5
+    dst: s2
+    bandwidth: 100
+    delay: 12
+  - src: s5
+    dst: s7
+    bandwidth: 100
+    delay: 10
+
+hosts:
+  # Each switch is connected to a test host for end-to-end traffic generation and performance testing.
+  - id: h1
+    connected_to: s1
+  - id: h2
+    connected_to: s2
+  - id: h3
+    connected_to: s3
+  - id: h4
+    connected_to: s4
+  - id: h5
+    connected_to: s5
+  - id: h6
+    connected_to: s6
+  - id: h7
+    connected_to: s7
+  - id: h8
+    connected_to: s8
+  - id: h9
+    connected_to: s9
+  - id: h10
+    connected_to: s10
+  - id: h11
+    connected_to: s11
+  - id: h12
+    connected_to: s12
+
+
+

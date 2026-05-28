@@ -1,0 +1,155 @@
+# configs/intents/green_intent.yaml
+# 
+# Example of Green Intent Configuration
+# 
+# Core Idea: Minimize energy consumption while meeting performance constraints
+# Traditional Monitoring Blind Spot: Meeting performance requirements but exceeding energy limits
+
+---
+intent_id: "green_qos_intent_001"
+name: "视频流绿色意图"
+description: "视频流传输意图，同时满足QoS和能耗约束"
+version: "1.0"
+created_at: "2025-03-17"
+
+# Intent Type
+type: "green_qos"
+
+# Traffic Matching
+match:
+  src_ip: "10.0.0.0/24"
+  dst_ip: "10.0.1.0/24"
+  protocol: "UDP"
+  dst_port: 5001
+  
+# Quality of Service (QoS)
+performance:
+  delay:
+    metric: "end_to_end_delay"
+    operator: "<="
+    threshold: 50          # ms
+    unit: "ms"
+  
+  loss:
+    metric: "packet_loss_rate"
+    operator: "<="
+    threshold: 0.01        # 1%
+    unit: "ratio"
+  
+  bandwidth:
+    metric: "throughput"
+    operator: ">="
+    threshold: 10          # Mbps
+    unit: "Mbps"
+  
+  jitter:
+    metric: "delay_jitter"
+    operator: "<="
+    threshold: 10          # ms
+    unit: "ms"
+
+# Energy consumption constraints (green)
+energy:
+  # Maximum power consumption constraint
+  max_power:
+    metric: "total_network_power"
+    operator: "<="
+    threshold: 1500        # watts
+    unit: "watts"
+  
+  # Energy efficiency constraints
+  min_efficiency:
+    metric: "energy_efficiency"
+    operator: ">="
+    threshold: 2.0         # Mbps/Watt
+    unit: "Mbps/W"
+  
+  # Energy saving strategies
+  optimization:
+    mode: "minimize_power"           # minimize_power | balance | maximize_performance
+    allow_link_sleep: true           # Allow idle links to go into sleep mode
+    consolidation_preferred: true    # Preferred Traffic Aggregation
+    max_active_devices: 15           # Maximum active devices
+  
+  # Link sleep policy
+  sleep_policy:
+    idle_threshold: 0.01             # Utilization below this value allows sleep
+    min_sleep_duration: 10           # Minimum sleep duration (seconds)
+    wakeup_delay_tolerance: 100      # Acceptable wake-up delay (ms)
+
+# Path constraints
+path:
+  # Must pass through these nodes
+  waypoints: []
+  
+  # Must avoid these nodes
+  avoid_nodes: []
+  
+  # Maximum hops
+  max_hops: 5
+  
+  # Energy-aware routing
+  energy_aware_routing: true
+
+# Time constraints
+temporal:
+  # Valid time range
+  valid_from: "00:00"
+  valid_until: "23:59"
+  
+  # Special strategies for peak hours
+  peak_hours:
+    time_range: ["09:00-12:00", "14:00-18:00"]
+    relaxed_energy_constraint: true  # Relaxed energy constraint during peak hours
+    energy_multiplier: 1.5           # Energy consumption threshold multiplier
+
+# Priority
+priority: 100
+
+# Violation Handling
+violation:
+  # Performance Violation
+  performance_violation:
+    action: "alert"
+    severity: "high"
+  
+  # Energy Violation (Hidden Drift)
+  energy_violation:
+    action: "alert_and_optimize"
+    severity: "medium"
+    auto_consolidation: true         # Auto execute traffic aggregation
+
+---
+# Second intent example: Pure energy-saving intent
+
+intent_id: "energy_saving_intent_001"
+name: "夜间节能意图"
+description: "夜间低负载时段，最大化节能"
+type: "energy_saving"
+
+match:
+  any: true
+
+performance:
+  delay:
+    operator: "<="
+    threshold: 200         # Relax the delay constraint
+    unit: "ms"
+
+energy:
+  max_power:
+    operator: "<="
+    threshold: 500         # Strict energy consumption limits
+    unit: "watts"
+  
+  optimization:
+    mode: "minimize_power"
+    allow_link_sleep: true
+    aggressive_sleep: true           # Aggressive sleep strategy
+    consolidation_preferred: true
+
+temporal:
+  valid_from: "22:00"
+  valid_until: "06:00"
+
+priority: 50

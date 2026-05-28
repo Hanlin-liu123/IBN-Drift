@@ -1,0 +1,96 @@
+# configs/topologies/geant.yaml
+name: GEANT
+description: "European Research Network (24 nodes) - from SNDlib"
+nodes:
+  - {id: s1, name: "AT", type: switch}   # Austria
+  - {id: s2, name: "BE", type: switch}   # Belgium
+  - {id: s3, name: "CH", type: switch}   # Switzerland
+  - {id: s4, name: "CZ", type: switch}   # Czech Republic
+  - {id: s5, name: "DE", type: switch}   # Germany
+  - {id: s6, name: "DK", type: switch}   # Denmark
+  - {id: s7, name: "ES", type: switch}   # Spain
+  - {id: s8, name: "FI", type: switch}   # Finland
+  - {id: s9, name: "FR", type: switch}   # France
+  - {id: s10, name: "GR", type: switch}  # Greece
+  - {id: s11, name: "HR", type: switch}  # Croatia
+  - {id: s12, name: "HU", type: switch}  # Hungary
+  - {id: s13, name: "IE", type: switch}  # Ireland
+  - {id: s14, name: "IL", type: switch}  # Israel
+  - {id: s15, name: "IT", type: switch}  # Italy
+  - {id: s16, name: "LU", type: switch}  # Luxembourg
+  - {id: s17, name: "NL", type: switch}  # Netherlands
+  - {id: s18, name: "NO", type: switch}  # Norway
+  - {id: s19, name: "PL", type: switch}  # Poland
+  - {id: s20, name: "PT", type: switch}  # Portugal
+  - {id: s21, name: "SE", type: switch}  # Sweden
+  - {id: s22, name: "SI", type: switch}  # Slovenia
+  - {id: s23, name: "SK", type: switch}  # Slovakia
+  - {id: s24, name: "UK", type: switch}  # United Kingdom
+
+links:
+  - {src: s1, dst: s4, bandwidth: 100, delay: 3}   # AT-CZ
+  - {src: s1, dst: s5, bandwidth: 100, delay: 4}   # AT-DE
+  - {src: s1, dst: s12, bandwidth: 100, delay: 2}  # AT-HU
+  - {src: s1, dst: s15, bandwidth: 100, delay: 5}  # AT-IT
+  - {src: s1, dst: s22, bandwidth: 100, delay: 2}  # AT-SI
+  - {src: s2, dst: s9, bandwidth: 100, delay: 3}   # BE-FR
+  - {src: s2, dst: s16, bandwidth: 100, delay: 1}  # BE-LU
+  - {src: s2, dst: s17, bandwidth: 100, delay: 2}  # BE-NL
+  - {src: s2, dst: s24, bandwidth: 100, delay: 4}  # BE-UK
+  - {src: s3, dst: s5, bandwidth: 100, delay: 3}   # CH-DE
+  - {src: s3, dst: s9, bandwidth: 100, delay: 4}   # CH-FR
+  - {src: s3, dst: s15, bandwidth: 100, delay: 3}  # CH-IT
+  - {src: s4, dst: s5, bandwidth: 100, delay: 3}   # CZ-DE
+  - {src: s4, dst: s19, bandwidth: 100, delay: 4}  # CZ-PL
+  - {src: s4, dst: s23, bandwidth: 100, delay: 2}  # CZ-SK
+  - {src: s5, dst: s6, bandwidth: 100, delay: 4}   # DE-DK
+  - {src: s5, dst: s9, bandwidth: 100, delay: 5}   # DE-FR
+  - {src: s5, dst: s16, bandwidth: 100, delay: 2}  # DE-LU
+  - {src: s5, dst: s17, bandwidth: 100, delay: 3}  # DE-NL
+  - {src: s5, dst: s19, bandwidth: 100, delay: 4}  # DE-PL
+  - {src: s6, dst: s18, bandwidth: 100, delay: 5}  # DK-NO
+  - {src: s6, dst: s21, bandwidth: 100, delay: 3}  # DK-SE
+  - {src: s7, dst: s9, bandwidth: 100, delay: 6}   # ES-FR
+  - {src: s7, dst: s20, bandwidth: 100, delay: 4}  # ES-PT
+  - {src: s8, dst: s18, bandwidth: 100, delay: 5}  # FI-NO
+  - {src: s8, dst: s21, bandwidth: 100, delay: 3}  # FI-SE
+  - {src: s9, dst: s13, bandwidth: 100, delay: 6}  # FR-IE
+  - {src: s9, dst: s15, bandwidth: 100, delay: 5}  # FR-IT
+  - {src: s9, dst: s24, bandwidth: 100, delay: 3}  # FR-UK
+  - {src: s10, dst: s15, bandwidth: 100, delay: 6} # GR-IT
+  - {src: s11, dst: s12, bandwidth: 100, delay: 3} # HR-HU
+  - {src: s11, dst: s22, bandwidth: 100, delay: 2} # HR-SI
+  - {src: s12, dst: s23, bandwidth: 100, delay: 2} # HU-SK
+  - {src: s13, dst: s24, bandwidth: 100, delay: 4} # IE-UK
+  - {src: s14, dst: s15, bandwidth: 100, delay: 8} # IL-IT (via submarine)
+  - {src: s15, dst: s22, bandwidth: 100, delay: 3} # IT-SI
+  - {src: s17, dst: s24, bandwidth: 100, delay: 3} # NL-UK
+  - {src: s18, dst: s21, bandwidth: 100, delay: 4} # NO-SE
+  - {src: s19, dst: s23, bandwidth: 100, delay: 3} # PL-SK
+  - {src: s22, dst: s23, bandwidth: 100, delay: 2} # SI-SK
+
+hosts:
+  - {id: h1, connected_to: s1}
+  - {id: h2, connected_to: s2}
+  - {id: h3, connected_to: s3}
+  - {id: h4, connected_to: s4}
+  - {id: h5, connected_to: s5}
+  - {id: h6, connected_to: s6}
+  - {id: h7, connected_to: s7}
+  - {id: h8, connected_to: s8}
+  - {id: h9, connected_to: s9}
+  - {id: h10, connected_to: s10}
+  - {id: h11, connected_to: s11}
+  - {id: h12, connected_to: s12}
+  - {id: h13, connected_to: s13}
+  - {id: h14, connected_to: s14}
+  - {id: h15, connected_to: s15}
+  - {id: h16, connected_to: s16}
+  - {id: h17, connected_to: s17}
+  - {id: h18, connected_to: s18}
+  - {id: h19, connected_to: s19}
+  - {id: h20, connected_to: s20}
+  - {id: h21, connected_to: s21}
+  - {id: h22, connected_to: s22}
+  - {id: h23, connected_to: s23}
+  - {id: h24, connected_to: s24}

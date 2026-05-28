@@ -1,0 +1,48 @@
+# configs/real_trace_experiment.yaml
+# Configuration for Generating Real-World Traffic Datasets
+
+# Output directory
+output_dir: "data/real_trace_dataset"
+
+# Controller Configuration
+controller_ip: "127.0.0.1"
+controller_port: 6653
+controller_url: "http://127.0.0.1:8080"
+
+# Data Source Configuration
+sndlib_dir: "data/real_traces/sndlib"
+traffic_profile_path: null  # Path to the MAWI PCAP file; if none is found, use a synthetic one
+
+topologies:
+  - "geant"
+
+# MAWI Configuration Analysis
+max_packets: 50000
+time_scale_factor: 1.0
+
+# Traffic Configuration
+mawi_stats_path: "profiles/mawi_real_stats.json"  
+max_traffic_rate: 10.0
+
+
+# Experiment Scale Configuration
+num_routings: 10               # Number of routing variants (maximum 26)
+num_scheduling_configs: 30    # Number of scheduling configurations (maximum 100)
+
+# Sampling Configuration
+normal_duration: 80           # Data acquisition time under normal conditions (seconds)
+drift_samples_per_config: 3   # Number of drift samples per configuration
+
+# Queue Configuration (bits)
+queue_sizes:
+  - 8000
+  - 16000
+  - 32000
+  - 64000
+
+# Scheduling Policies
+scheduling_policies:
+  - "FIFO"
+  - "SP"
+  - "WFQ"
+  - "DRR"

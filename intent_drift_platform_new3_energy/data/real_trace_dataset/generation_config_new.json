@@ -1,0 +1,114 @@
+{
+  "config": {
+    "output_dir": "data/real_trace_dataset",
+    "controller_ip": "127.0.0.1",
+    "controller_port": 6653,
+    "controller_url": "http://127.0.0.1:8080",
+    "sndlib_dir": "data/real_traces/sndlib",
+    "traffic_profile_path": null,
+    "max_packets": 50000,
+    "time_scale_factor": 1.0,
+    "max_traffic_rate": 10.0,
+    "num_routings": 10,
+    "num_scheduling_configs": 30,
+    "normal_duration": 80,
+    "drift_samples_per_config": 3,
+    "stochastic_drift": {
+      "normal_pre_min": 20,
+      "normal_pre_max": 45,
+      "normal_post_min": 15,
+      "normal_post_max": 40,
+      "drift_duration_scale": 8.0,
+      "drift_duration_offset": 2.0,
+      "drift_duration_min": 3.0,
+      "drift_duration_max": 30.0,
+      "inter_drift_gap_scale": 8.0,
+      "inter_drift_gap_min": 2.0,
+      "inter_drift_gap_max": 25.0,
+      "episodes_choices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "episodes_probs": [
+        0.3,
+        0.4,
+        0.2,
+        0.1
+      ],
+      "delay_lognormal_mean": 3.5,
+      "delay_lognormal_sigma": 0.8,
+      "delay_min": 10,
+      "delay_max": 200,
+      "loss_beta_a": 2.0,
+      "loss_beta_b": 20.0,
+      "loss_min": 0.001,
+      "loss_max": 0.2,
+      "mixed_drift_probability": 0.15,
+      "secondary_energy_target_size": 2,
+      "settle_time_min": 1,
+      "settle_time_max": 3,
+      "recovery_collect_threshold": 3,
+      "replay_tail_buffer": 10
+    },
+    "intent_max_power": 1500.0,
+    "energy": {
+      "switch_chassis_power": 100.0,
+      "switch_idle_port_power": 2.0,
+      "switch_active_port_power": 5.0,
+      "switch_dynamic_power": 10.0,
+      "link_transceiver_power": 1.0,
+      "link_dynamic_power": 0.5
+    },
+    "num_intents_per_experiment": 4,
+    "intent_seed": 42,
+    "drift_distribution": {
+      "normal": 0.4,
+      "performance": 0.2,
+      "path": 0.2,
+      "energy": 0.2
+    },
+    "topologies": [
+      "geant"
+    ],
+    "mawi_stats_path": "profiles/mawi_real_stats.json",
+    "queue_sizes": [
+      8000,
+      16000,
+      32000,
+      64000
+    ],
+    "scheduling_policies": [
+      "FIFO",
+      "SP",
+      "WFQ",
+      "DRR"
+    ]
+  },
+  "drift_types": {
+    "normal": 0,
+    "performance": 1,
+    "path": 2,
+    "energy": 3
+  },
+  "labeling_method": "auto_derived_from_intent",
+  "prediction_mode": true,
+  "sequence_build_after_temporal_split": true,
+  "window_size": 10,
+  "prediction_horizon": 3,
+  "min_persist": 2,
+  "num_intents_per_experiment": 4,
+  "intent_templates": [
+    "realtime_video",
+    "web_service",
+    "bulk_transfer",
+    "energy_saving"
+  ],
+  "has_baseline_routing_paths": true,
+  "dataset_split": {
+    "train": 7795,
+    "val": 476,
+    "test": 518
+  }
+}

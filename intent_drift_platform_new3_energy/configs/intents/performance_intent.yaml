@@ -1,0 +1,35 @@
+# configs/intents/performance_intent.yaml
+intent_id: "intent_001"
+type: "performance"
+description: "Ensure low latency for video streaming"
+
+constraints:
+  performance:
+    - metric: "delay"
+      operator: "<="
+      threshold: 50  # ms
+      src: "h1"
+      dst: "h12"
+    - metric: "jitter"
+      operator: "<="
+      threshold: 10  # ms
+      src: "h1"
+      dst: "h12"
+    - metric: "packet_loss"
+      operator: "<="
+      threshold: 0.01  # 1%
+      src: "h1"
+      dst: "h12"
+  
+  path:
+    - flow_id: "flow_001"
+      src: "h1"
+      dst: "h12"
+      waypoints: ["s3", "s6"]  # Must pass through these nodes
+      avoid: ["s8"]            # Must avoid these nodes
+  
+  time:
+    start: "08:00"
+    end: "22:00"
+    timezone: "UTC"
+
