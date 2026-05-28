@@ -255,19 +255,19 @@ Four baseline implementations are provided for benchmarking:
 
 ```bash
 # Rule-based thresholding (reactive, clause-level)
-python baselines/baseline_rule_based.py --test data/real_trace_dataset/test_new.json
+python baselines/baseline_rule_based.py --test data/real_trace_dataset/test.json
 
 # DBSCAN clustering (unsupervised, binary only)
-python baselines/baseline_dbscan.py --train data/real_trace_dataset/train_new.json \
-                                     --test data/real_trace_dataset/test_new.json
+python baselines/baseline_dbscan.py --train data/real_trace_dataset/train.json \
+                                     --test data/real_trace_dataset/test.json
 
 # LEAD-Drift MLP (proactive, binary only)
-python baselines/baseline_lead_drift.py --train data/real_trace_dataset/train_new.json \
-                                         --test data/real_trace_dataset/test_new.json
+python baselines/baseline_lead_drift.py --train data/real_trace_dataset/train.json \
+                                         --test data/real_trace_dataset/test.json
 
 # Random Forest (proactive, clause-level)
-python baselines/baseline_random_forest.py --train data/real_trace_dataset/train_new.json \
-                                            --test data/real_trace_dataset/test_new.json
+python baselines/baseline_random_forest.py --train data/real_trace_dataset/train.json \
+                                            --test data/real_trace_dataset/test.json
 ```
 
 ### Rebuilding with Different Parameters
