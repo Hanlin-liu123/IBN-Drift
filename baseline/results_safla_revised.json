@@ -1,0 +1,145 @@
+{
+  "method": "Revised SAFLA-style baselines (adapted from Kou et al., IEEE TCCN 2026)",
+  "test_data": "D:\\shareWithUbuntu\\test_50.json",
+  "label_source": "current",
+  "notes": [
+    "This is an adapted baseline, not a literal reproduction of SAFLA's OpenFlow extraction pipeline.",
+    "Observed intent set is approximated from all end-to-end path records in the current snapshot.",
+    "Energy clause is always set to 0 because SAFLA does not model energy drift."
+  ],
+  "description": {
+    "vanilla": "Tuple-level semantic SAFLA baseline. Compares declared intent set and observed intent set on (src,dst,protocol), capturing both missing declared intents and extra undeclared intents.",
+    "extended": "Path-aware semantic SAFLA baseline. Adds direct path consistency checks on top of tuple-level semantic comparison.",
+    "full": "Path-aware semantic comparison plus practical QoS threshold checks for delay/loss/throughput, approximating SAFLA's joint semantic and performance drift detection."
+  },
+  "stats": {
+    "vanilla": {
+      "samples": 102,
+      "samples_without_declared_path": 0,
+      "samples_with_extra_observed_intents": 102,
+      "samples_with_missing_declared_intents": 0
+    },
+    "extended": {
+      "samples": 102,
+      "samples_without_declared_path": 0,
+      "samples_with_extra_observed_intents": 102,
+      "samples_with_missing_declared_intents": 0
+    },
+    "full": {
+      "samples": 102,
+      "samples_without_declared_path": 0,
+      "samples_with_extra_observed_intents": 102,
+      "samples_with_missing_declared_intents": 0
+    }
+  },
+  "results": {
+    "vanilla": {
+      "macro_f1": 0.16296296296296298,
+      "per_clause": {
+        "perf": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6372549019607843,
+          "support_pos": 37,
+          "support_neg": 65
+        },
+        "path": {
+          "precision": 0.3235294117647059,
+          "recall": 1.0,
+          "f1": 0.48888888888888893,
+          "accuracy": 0.3235294117647059,
+          "support_pos": 33,
+          "support_neg": 69
+        },
+        "energy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6666666666666666,
+          "support_pos": 34,
+          "support_neg": 68
+        }
+      },
+      "detection": {
+        "precision": 0.6568627450980392,
+        "recall": 1.0,
+        "f1": 0.7928994082840237,
+        "pos_samples": 67,
+        "neg_samples": 35
+      }
+    },
+    "extended": {
+      "macro_f1": 0.16296296296296298,
+      "per_clause": {
+        "perf": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6372549019607843,
+          "support_pos": 37,
+          "support_neg": 65
+        },
+        "path": {
+          "precision": 0.3235294117647059,
+          "recall": 1.0,
+          "f1": 0.48888888888888893,
+          "accuracy": 0.3235294117647059,
+          "support_pos": 33,
+          "support_neg": 69
+        },
+        "energy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6666666666666666,
+          "support_pos": 34,
+          "support_neg": 68
+        }
+      },
+      "detection": {
+        "precision": 0.6568627450980392,
+        "recall": 1.0,
+        "f1": 0.7928994082840237,
+        "pos_samples": 67,
+        "neg_samples": 35
+      }
+    },
+    "full": {
+      "macro_f1": 0.30274790919952216,
+      "per_clause": {
+        "perf": {
+          "precision": 0.52,
+          "recall": 0.35135135135135137,
+          "f1": 0.4193548387096775,
+          "accuracy": 0.6470588235294118,
+          "support_pos": 37,
+          "support_neg": 65
+        },
+        "path": {
+          "precision": 0.3235294117647059,
+          "recall": 1.0,
+          "f1": 0.48888888888888893,
+          "accuracy": 0.3235294117647059,
+          "support_pos": 33,
+          "support_neg": 69
+        },
+        "energy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6666666666666666,
+          "support_pos": 34,
+          "support_neg": 68
+        }
+      },
+      "detection": {
+        "precision": 0.6568627450980392,
+        "recall": 1.0,
+        "f1": 0.7928994082840237,
+        "pos_samples": 67,
+        "neg_samples": 35
+      }
+    }
+  }
+}
